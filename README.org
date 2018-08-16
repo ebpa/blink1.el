@@ -1,0 +1,56 @@
+* blink1.el - Emacs client for the blink1 USB LED device
+:PROPERTIES:
+:ID:       ad82ebe3-ab64-49ce-b3d3-4cb33194e4fe
+:pin:  t
+:END:
+** Goals
+:PROPERTIES:
+:pin:  0
+:ID:       434c4b10-471c-48e8-aa54-8cb62dd7fb12
+:END:
+** Installation
+:PROPERTIES:
+:pin:  1
+:ID:       5c612a57-e0c8-4c9c-b282-abd1e1c6c1fd
+:END:
+
+Install the `blink1-tool` command-line utility using the directions from [[https://blink1.thingm.com/blink1-tool/][here]].
+
+** Usage
+:PROPERTIES:
+:pin:      2
+:ID:       fa6db13b-e5c2-41da-bd81-01f500520f95
+:END:
+
+Color 
+
+Display basic color patterns:
+
+#+begin_src emacs-lisp
+(blink1-play-pattern
+ '("#ff0000" "#00ff00" "#0000ff" "#ffffff"))
+
+(blink1-play-pattern
+ '(lavender blue))
+#+end_src
+
+With a timer you can use the blink1 as a pomodoro timer:
+
+#+begin_src emacs-lisp :tangle yes
+(defun my/start-blink1-basic-pomodoro (time)
+  "Use the blink1 to indicate "
+  (interactive (list (read-string "Duration: " "15 minutes")))
+  (blink1-set-color 'black)
+  (blink1-glimmer :color 'green :num 3)
+  (run-at-time time nil (lambda () (blink1-glimmer :color 'red :num 3) (blink1-set-color 'orange))))
+#+end_src
+
+** [[https://gist.github.com/todbot/d82959c08effd5367f76][blink1-tool --playpattern example · GitHub]]
+:PROPERTIES:
+:ID:       cc16cd21-85e7-4ae3-89c1-85d7871076f6
+:END:
+** Alternatives / Related Projects
+:PROPERTIES:
+:pin:  -1
+:ID:       63861b86-83fe-464f-b087-e9ad48dfe549
+:END:
