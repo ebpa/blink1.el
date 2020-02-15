@@ -51,11 +51,13 @@
 
 (defun blink1--rgb-color (color)
   "Return the RGB value of COLOR as a triple."
-  (when (symbolp color)
-    (setq color (symbol-name color)))
-  (-let* (((r g b) (assoc-default color color-name-rgb-alist)))
-    (when (and r g b)
-      (list (/ r 256) (/ g 256) (/ b 256)))))
+  (if (listp color)
+      color
+    (when (symbolp color)
+      (setq color (symbol-name color)))
+    (-let* (((r g b) (assoc-default color color-name-rgb-alist)))
+      (when (and r g b)
+        (list (/ r 256) (/ g 256) (/ b 256))))))
 
 (defun blink1--format-rgb (rgb)
   "Format RGB value as a six character hexidecimal value (\"#00FF00\")."
