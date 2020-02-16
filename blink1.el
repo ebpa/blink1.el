@@ -53,15 +53,34 @@
   "Run blink1 COMMAND."
   (shell-command-to-string (format "blink1-tool %s" command)))
 
+(defconst blink1--rgb-regexp "#?\\([0-9a-fA-F]\\{2\\}\\)\\([0-9a-fA-F]\\{2\\}\\)\\([0-9a-fA-F]\\{2\\}\\)")
+
+(defun blink1--rbg-string-p (str)
+  "Return t if STR is a valid RGB color string."
+  (and (string-match-p blink1--rgb-regexp str) t))
+
+(defun blink1--rbg-string-to-triple (color)
+  "Convert RGB COLOR string (ex: \"#ff0000\") to internal triple format (ex: '(255 0 0))."
+  (when (stringp color)
+    (save-match-data
+      (when (string-match blink1--rgb-regexp color)
+        (list (string-to-number (match-string 1 color) 16)
+              (string-to-number (match-string 2 color) 16)
+              (string-to-number (match-string 3 color) 16))))))
+
 (defun blink1--rgb-color (color)
   "Return the RGB value of COLOR as a triple."
-  (if (listp color)
-      color
-    (when (symbolp color)
-      (setq color (symbol-name color)))
+  (when (symbolp color)
+    (setq color (symbol-name color)))
+  (cond
+   ((listp color)
+    color)
+   ((blink1--rbg-string-p color)
+    (blink1--rbg-string-to-triple color))
+   (t
     (-let* (((r g b) (assoc-default color color-name-rgb-alist)))
       (when (and r g b)
-        (list (/ r 256) (/ g 256) (/ b 256))))))
+        (list (/ r 256) (/ g 256) (/ b 256)))))))
 
 (defun blink1--format-rgb (rgb)
   "Format RGB value as a six character hexidecimal value (\"#00FF00\")."
@@ -160,5 +179,4 @@ Optionally specify DEVICE-ID to control.  Controls all devices by default."
   (blink1-play-pattern (list color-a color-b)))
 
 (provide 'blink1)
-
 ;;; blink1.el ends here
