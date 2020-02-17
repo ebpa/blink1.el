@@ -126,7 +126,7 @@ Optionally specify DEVICE-ID to control.  Controls all devices by default."
   (interactive (list 1 (blink1--prefix-device-id)))
   (blink1-command (format "--play %d --id %s" state device-id)))
 
-(cl-defun blink1-stop (&optional (device-id "all"))
+(cl-defun blink1-stop (&optional (_device-id "all"))
   "Start playing the current pattern.
 
 Optionally specify DEVICE-ID to control.  Controls all devices by default."
