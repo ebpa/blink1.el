@@ -4,8 +4,9 @@
 
 ;; Author: Erik Anderson <erik@ebpa.link>
 ;; Keywords: tools
-;; Package-Requires: ((emacs "24.4") (iot "0.0.1"))
+;; Package-Requires: ((emacs "24.4"))
 ;; Version: 0.0.1
+;; URL: https://github.com/ebpa/blink1.el
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
