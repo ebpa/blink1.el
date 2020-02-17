@@ -29,6 +29,9 @@
 (require 'cl-lib)
 (require 'term/tty-colors)
 
+(require 'dash)
+(require 's)
+
 (defvar blink1-pattern-alist '() "List of saved patterns")
 
 ;;; Utility functions
