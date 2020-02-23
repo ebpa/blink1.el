@@ -4,8 +4,9 @@
 
 ;; Author: Erik Anderson <erik@ebpa.link>
 ;; Keywords: tools
-;; Package-Requires: ((emacs "24.4") (iot "0.0.1"))
+;; Package-Requires: ((emacs "24.4"))
 ;; Version: 0.0.1
+;; URL: https://github.com/ebpa/blink1.el
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -27,6 +28,9 @@
 
 (require 'cl-lib)
 (require 'term/tty-colors)
+
+(require 'dash)
+(require 's)
 
 (defvar blink1-pattern-alist '() "List of saved patterns")
 
@@ -122,7 +126,7 @@ Optionally specify DEVICE-ID to control.  Controls all devices by default."
   (interactive (list 1 (blink1--prefix-device-id)))
   (blink1-command (format "--play %d --id %s" state device-id)))
 
-(cl-defun blink1-stop (&optional (device-id "all"))
+(cl-defun blink1-stop (&optional (_device-id "all"))
   "Start playing the current pattern.
 
 Optionally specify DEVICE-ID to control.  Controls all devices by default."
