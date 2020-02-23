@@ -3,11 +3,14 @@
 :ID:       ad82ebe3-ab64-49ce-b3d3-4cb33194e4fe
 :pin:  t
 :END:
+
 ** Goals
 :PROPERTIES:
 :pin:  0
 :ID:       434c4b10-471c-48e8-aa54-8cb62dd7fb12
 :END:
+ - Hack value
+
 ** Installation
 :PROPERTIES:
 :pin:  1
