@@ -4,7 +4,7 @@
 
 ;; Author: Erik Anderson <erik@ebpa.link>
 ;; Keywords: tools
-;; Package-Requires: ((emacs "24.4"))
+;; Package-Requires: ((emacs "24.4") (dash "2.16.0") (s "1.12.0"))
 ;; Version: 0.0.1
 ;; URL: https://github.com/ebpa/blink1.el
 
