@@ -114,7 +114,7 @@
 
 ;;; Interactive commands
 
-(cl-defun blink1-set-color (color &optional (device-id "all"))
+(cl-defun blink1-set-color (color &optional (device-id "all") no-gamma)
   "Set Blink1 LED color to COLOR.
 
 Optionally specify DEVICE-ID to control.  Controls all devices by default.
@@ -123,11 +123,12 @@ COLOR may be an hexadecimal RGB value formatted as \"#333333\" or a symbol or st
   (interactive (list (blink1-read-rgb-color) (blink1--prefix-device-id)))
   (setq color (blink1--rgb-color color))
   (shell-command
-   (format "blink1-tool --rgb=%s --id %s"
+   (format "blink1-tool --rgb=%s --id %s %s"
            (blink1--format-rgb
             (or (blink1--rgb-color color)
                 color))
-           device-id)))
+           device-id
+           (if no-gamma "--nogamma" ""))))
 
 (defun blink1-play-pattern (pattern)
   "Play PATTERN continuously."
