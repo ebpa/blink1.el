@@ -179,5 +179,24 @@ Optionally specify DEVICE-ID to control.  Controls all devices by default."
   (interactive (list (blink1-read-rgb-color)))
   (blink1-play-pattern (list color-a color-b)))
 
+(defun blink1--current-color ()
+  "Return the current color of the blinky.
+
+Actually, this returns the last input color of the
+blinky, which might not be what is currently
+displayed."
+  (-let* ((output (s-chomp (blink1-command "--rgbread")))
+          ((_ rgbvals) (s-split ": " output))
+          (rgbvals  (s-replace "0x" "" rgbvals))
+          (rgbvals (s-split "," rgbvals)))
+    (--map (string-to-number it 16) rgbvals)))
+
+(defmacro blink1-save-current-color (&rest body)
+  "Read the current color, execute BODY, then switch back to that color."
+  (let ((sym (gensym)))
+    `(let ((,sym (blink1--current-color)))
+       ,@body
+       (blink1-set-color ,sym))))
+
 (provide 'blink1)
 ;;; blink1.el ends here
