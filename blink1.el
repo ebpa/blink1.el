@@ -167,7 +167,7 @@ displayed."
           (rgbvals (s-split "," rgbvals)))
     (--map (string-to-number it 16) rgbvals)))
 
-(defmacro blink1-with-current-color (&rest body)
+(defmacro blink1-save-current-color (&rest body)
   "Read the current color, execute BODY, then switch back to that color."
   (let ((sym (gensym)))
     `(let ((,sym (blink1--current-color)))
