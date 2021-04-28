@@ -155,7 +155,7 @@ Optionally specify DEVICE-ID to control.  Controls all devices by default."
 
 (cl-defun blink1-random (&optional (num 1))
   "Flash a random color NUM times."
-  (interactive)
+  (interactive "p")
   (blink1-command (format "--random=%d" num)))
 
 (cl-defun blink1-glimmer (&key (color 'white) (num 1) (device-id "all"))
