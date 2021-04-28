@@ -55,11 +55,11 @@
 
 (defconst blink1--rgb-regexp "#?\\([0-9a-fA-F]\\{2\\}\\)\\([0-9a-fA-F]\\{2\\}\\)\\([0-9a-fA-F]\\{2\\}\\)")
 
-(defun blink1--rbg-string-p (str)
+(defun blink1--rgb-string-p (str)
   "Return t if STR is a valid RGB color string."
   (and (string-match-p blink1--rgb-regexp str) t))
 
-(defun blink1--rbg-string-to-triple (color)
+(defun blink1--rgb-string-to-triple (color)
   "Convert RGB COLOR string (ex: \"#ff0000\") to internal triple format (ex: '(255 0 0))."
   (when (stringp color)
     (save-match-data
@@ -75,8 +75,8 @@
   (cond
    ((listp color)
     color)
-   ((blink1--rbg-string-p color)
-    (blink1--rbg-string-to-triple color))
+   ((blink1--rgb-string-p color)
+    (blink1--rgb-string-to-triple color))
    (t
     (-let* (((r g b) (assoc-default color color-name-rgb-alist)))
       (when (and r g b)
