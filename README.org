@@ -28,9 +28,9 @@ If you are on a Linux-like OS, you will need to either run as root (<code> sudo 
 :ID:       fa6db13b-e5c2-41da-bd81-01f500520f95
 :END:
 
-Color 
+*** Basic color pattern
 
-Display basic color patterns:
+Display basic color patterns by passing a list:
 
 #+begin_src emacs-lisp
 (blink1-play-pattern
@@ -40,7 +40,9 @@ Display basic color patterns:
  '(lavender blue))
 #+end_src
 
-With a timer you can use the blink1 as a pomodoro timer:
+*** Example: Pomodoro Timer
+
+With an emacs timer you can use the blink1 as a pomodoro timer:
 
 #+begin_src emacs-lisp :tangle yes
 (defun my/start-blink1-basic-pomodoro (time)
@@ -51,10 +53,6 @@ With a timer you can use the blink1 as a pomodoro timer:
   (run-at-time time nil (lambda () (blink1-glimmer :color 'red :num 3) (blink1-set-color 'orange))))
 #+end_src
 
-** [[https://gist.github.com/todbot/d82959c08effd5367f76][blink1-tool --playpattern example · GitHub]]
-:PROPERTIES:
-:ID:       cc16cd21-85e7-4ae3-89c1-85d7871076f6
-:END:
 ** Alternatives / Related Projects
 :PROPERTIES:
 :pin:  -1
