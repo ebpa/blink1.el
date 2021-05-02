@@ -17,7 +17,10 @@
 :ID:       5c612a57-e0c8-4c9c-b282-abd1e1c6c1fd
 :END:
 
-Install the `blink1-tool` command-line utility using the directions from [[https://blink1.thingm.com/blink1-tool/][here]].
+Install the `blink1-tool` command-line utility using the directions from [[https://blink1.thingm.com/blink1-tool/][here]].  Note:
+#+begin_quote
+If you are on a Linux-like OS, you will need to either run as root (<code> sudo blink1-tool</code>) or install udev rules as described in [[https://github.com/todbot/blink1/blob/master/linux/51-blink1.rules][51-blink1.rules]].
+#+end_quote
 
 ** Usage
 :PROPERTIES:
